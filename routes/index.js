@@ -1,5 +1,4 @@
+var tasks = require('../controllers/tasks')
 module.exports = function (app) {
-    app.get('/', function (request, response) {
-        response.send('Hello world')
-    })
+    app.get('/', tasks.index)
 }

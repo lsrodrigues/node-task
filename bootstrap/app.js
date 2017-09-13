@@ -5,7 +5,7 @@ var app = express()
 
 app.use(logger('dev'))
 require('../routes/index')(app)
-consign().include('routes').into(app)
 
+consign().include('routes').into(app)
 
 module.exports = app
