@@ -35,4 +35,8 @@ function destroy(request, response) {
     response.send(tasks);
 }
 
-module.exports = { index, store, update, destroy }
+function create(request, response) {
+    response.render('form')
+}
+
+module.exports = { index, store, update, destroy, create }

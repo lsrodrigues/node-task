@@ -4,4 +4,5 @@ module.exports = function (app) {
     app.post('/', tasks.store)
     app.put('/task/:id',  tasks.update)
     app.delete('/task/:id', tasks.destroy)
+    app.get('/create', tasks.create)
 }
