@@ -1,3 +1,4 @@
+var hbs = require('express-handlebars')
 var bodyParser = require('body-parser')
 var consign = require('consign')
 var logger = require('morgan')
@@ -9,6 +10,11 @@ app.use(bodyParser.urlencoded({
     extended: true
   }))
 app.use(bodyParser.json())
+app.engine('.hbs', hbs({
+  defaultLayout: 'main',
+  extname: '.hbs'
+}))
+app.set('view engine', '.hbs')
 require('../routes/index')(app)
 
 consign().include('routes').into(app)
