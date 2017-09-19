@@ -2,15 +2,26 @@
   <div class="col-md-6 col-md-offset-3">
     <div class="page-header">
       <h1>
-        Nova Tarefa
+        {{ title }} Tarefa
       </h1>
     </div><!-- /.page-header -->
-    <form class="form" action="/" method="post">
+    <form class="form" action="{{ action }}" method="post">
+      {{method}}
       <div class="form-group">
         <label>Titulo:</label>
-        <input class="form-control" type="text" class="form-group" name="title">
+        <input class="form-control" type="text" class="form-group" name="title" value="{{ task.title }}">
       </div>
-      <button class="btn btn-primary btn-block">Criar</button>
+      {{#if task}}
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" value="1" name="status" {{#if task.status}}checked{{/if}}>
+          <span>Concluído</span>
+        </label>
+      </div>
+      {{/if}}
+      <button class="btn btn-primary btn-block">
+        {{#if task}} Salvar {{else}} Criar {{/if}}
+      </button>
     </form>
   </div>
 </div><!-- /.container -->

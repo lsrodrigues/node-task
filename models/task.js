@@ -30,4 +30,10 @@ function remove (id) {
     return tasks
   }
 
-module.exports = { all, save, update, remove }
+function find (id) {
+    return tasks.data.filter(function (task) {
+        return task._id == id
+    })[0]
+}
+
+module.exports = { all, save, update, remove, find }

@@ -27,7 +27,14 @@ function update(request, response) {
     var task = request.body
 
     var tasks = Task.update(id, task);
-    response.send(tasks);
+    response.format({
+        json: function () {
+            return response.json(tasks)
+        },
+        html: function () {
+            return response.render('home', { tasks: tasks.data })
+        }
+    })
 }
 
 function destroy(request, response) {
@@ -36,7 +43,20 @@ function destroy(request, response) {
 }
 
 function create(request, response) {
-    response.render('form')
+    response.render('form', {
+        action: '/',
+        title: 'Nova',
+    })
 }
 
-module.exports = { index, store, update, destroy, create }
+function edit(request, response) {
+    var task = Task.find(request.params.id)
+    
+    response.render('form', {
+        task: task,
+        title: 'Editar',
+        action: '/task/' + request.params.id + "?_method=PUT",
+    })
+}
+
+module.exports = { index, store, update, destroy, create, edit }
