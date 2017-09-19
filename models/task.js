@@ -23,4 +23,11 @@ function update(id, task) {
     return tasks
 }
 
-module.exports = { all, save, update }
+function remove (id) {
+    tasks = tasks.data.filter(function (task) {
+      return task._id != id
+    })
+    return tasks
+  }
+
+module.exports = { all, save, update, remove }

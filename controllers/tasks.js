@@ -21,4 +21,9 @@ function update (request, response) {
     response.send(tasks);
 }
 
-module.exports = {index, store, update}
+function destroy (request, response) {
+    var tasks = Task.remove(request.params.id)
+    response.send(tasks);
+}
+
+module.exports = {index, store, update, destroy}
