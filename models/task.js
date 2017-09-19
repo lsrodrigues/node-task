@@ -14,4 +14,13 @@ function save(object) {
     tasks.data.push(object)
 }
 
-module.exports = {all, save}
+function update(id, task) {
+    var index = tasks.data.findIndex(function (task) {
+        return task._id == id
+    })
+    tasks.data[index].title = task.title
+    tasks.data[index].status = task.status
+    return tasks
+}
+
+module.exports = { all, save, update }
