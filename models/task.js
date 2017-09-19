@@ -9,4 +9,9 @@ function all() {
     return tasks
 }
 
-module.exports = {all}
+function save(object) {
+    object._id = tasks.data[tasks.data.length - 1]._id + 1
+    tasks.data.push(object)
+}
+
+module.exports = {all, save}
