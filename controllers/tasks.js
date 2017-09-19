@@ -1,19 +1,28 @@
 var Task = require('../models/Task')
 
-function index (request, response) {
-    response.json(Task.all())
+function index(request, response) {
+    let tasks = Task.all()
+
+    response.format({
+        json: function () {
+            return response.json(tasks)
+        },
+        html: function () {
+            return response.render('home', { tasks: tasks.data })
+        }
+    })
 }
 
-function store (request, response) {
+function store(request, response) {
     Task.save({
         title: request.body.title,
         status: 0,
         created_at: new Date()
     })
-    response.redirect('/all')
+    response.redirect('/')
 }
 
-function update (request, response) {
+function update(request, response) {
     var id = request.params.id
     var task = request.body
 
@@ -21,9 +30,9 @@ function update (request, response) {
     response.send(tasks);
 }
 
-function destroy (request, response) {
+function destroy(request, response) {
     var tasks = Task.remove(request.params.id)
     response.send(tasks);
 }
 
-module.exports = {index, store, update, destroy}
+module.exports = { index, store, update, destroy }
